@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.invoke.MethodHandles.Lookup;
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 import java.lang.invoke.StringConcatFactory;
 
@@ -46,6 +47,47 @@ public class MjolnirTests {
            "Hello \u0001").dynamicInvoker())
      .invokeExact("Mjolnir");
     assertEquals("Hello Mjolnir", s);
+  }
+  
+  private static int boostrapLine(Lookup lookup) {
+    String className = lookup.lookupClass().getName();
+    int lineNumber = StackWalker.getInstance()
+        .walk(s -> s.skip(1).filter(f -> f.getClassName().equals(className)).findFirst())
+        .get()
+        .getLineNumber();
+    return lineNumber;
+  }
+  @Test
+  void line() throws Throwable {
+    int line = Mjolnir.get(MjolnirTests::boostrapLine);
+    assertEquals(62, line);  // this test may fail if you add more tests in front of this one !
+  }
+  
+  private static String boostrapFile(Lookup lookup) {
+    String className = lookup.lookupClass().getName();
+    String filename = StackWalker.getInstance()
+        .walk(s -> s.skip(1).filter(f -> f.getClassName().equals(className)).findFirst())
+        .get()
+        .getFileName();
+    return filename;
+  }
+  @Test
+  void filename() throws Throwable {
+    String filename = Mjolnir.get(MjolnirTests::boostrapFile);
+    assertEquals("MjolnirTests.java", filename);
+  }
+  
+  @SuppressWarnings("unused")
+  private static String hello(String name) {
+    return "Hello " + name;
+  }
+  private static MethodHandle initHello(Lookup lookup) throws NoSuchMethodException, IllegalAccessException {
+    return lookup.findStatic(lookup.lookupClass(), "hello", MethodType.methodType(String.class, String.class));
+  }
+  @Test
+  void hello() throws Throwable {
+    String result = (String)Mjolnir.get(MjolnirTests::initHello).invokeExact("Mjolnir");
+    assertEquals("Hello Mjolnir", result);
   }
   
   @SuppressWarnings("unused")
