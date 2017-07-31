@@ -41,7 +41,8 @@ Thor Hammer and a way to express invokedynamic in Java
      }
      
      private static MethodHandle initHello(Lookup lookup) throws NoSuchMethodException, IllegalAccessException {
-       return lookup.findStatic(lookup.lookupClass(), "hello", MethodType.methodType(String.class, String.class));
+       Class<?> declaringClass = lookup.lookupClass();
+       return lookup.findStatic(declaringClass, "hello", methodType(String.class, String.class));
      }
   
      public static void main(String[] args)  hello() throws Throwable {
