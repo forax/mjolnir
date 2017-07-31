@@ -1,7 +1,9 @@
-# mjolnir
+# Mjolnir
 Thor Hammer and a way to express invokedynamic in Java
 
-## Mjolnir
+[![Mjolnir build status](https://api.travis-ci.org/forax/mjolnir.svg?branch=master)](https://travis-ci.org/forax/mjolnir)
+
+## Goal
    Mjolnir is a Java class allowing to initialize a stable value by calling a bootstrap method once. 
  
    The implementation is optimized so the stable value is very cheap to get.
@@ -15,6 +17,8 @@ Thor Hammer and a way to express invokedynamic in Java
    - no static analysis requires for the bytecode rewriter
      - crawling the bytecode is enough
    - should work without the bytecode rewriter (for testing)
+ 
+ ## Examples
  
    The following example implements the equivalent of the macro__LINE__ i.e. it returns the current line number like in C
    ```java
