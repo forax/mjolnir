@@ -19,7 +19,7 @@ set("resolver.dependencies", list(
 set("compiler.lint", "all,-varargs,-overloads")
 
 set("packager.moduleMetadata", list(
-    "fr.umlv.mjolnir@1.0/fr.umlv.mjolnir.Rewriter"
+    "fr.umlv.mjolnir@1.0/fr.umlv.mjolnir.bytecode.Rewriter"
 ))
 
 //set("runner.module", "fr.umlv.mjolnir");

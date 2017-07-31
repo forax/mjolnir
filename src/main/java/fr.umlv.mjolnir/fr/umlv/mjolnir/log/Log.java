@@ -12,6 +12,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import fr.umlv.mjolnir.Mjolnir;
+import fr.umlv.mjolnir.OverrideEntryPoint;
 
 public class Log {
   public interface LogConfig {
@@ -110,6 +111,7 @@ public class Log {
     return INFOS.get(lookup.lookupClass()).dynamicInvoker();
   }
   
+  @OverrideEntryPoint
   public static void log(Supplier<String> message) {
     try {
       Mjolnir.override(message, Log::init).invokeExact(message);
