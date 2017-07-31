@@ -1,5 +1,5 @@
 # Mjolnir
-Thor Hammer and a way to express invokedynamic in Java
+Thor Hammer and secondarily a way to express invokedynamic in Java
 
 [![Mjolnir build status](https://api.travis-ci.org/forax/mjolnir.svg?branch=master)](https://travis-ci.org/forax/mjolnir)
 
