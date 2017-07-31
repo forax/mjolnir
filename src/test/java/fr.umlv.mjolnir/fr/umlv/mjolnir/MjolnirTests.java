@@ -1,13 +1,12 @@
 package fr.umlv.mjolnir;
 
 import static java.lang.invoke.MethodType.methodType;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.lang.invoke.MethodHandles.Lookup;
 import java.lang.invoke.MethodHandle;
-import java.lang.invoke.MethodHandles;
-import java.lang.invoke.MethodType;
+import java.lang.invoke.MethodHandles.Lookup;
 import java.lang.invoke.StringConcatFactory;
 
 import org.junit.jupiter.api.Test;
@@ -82,7 +81,7 @@ public class MjolnirTests {
     return "Hello " + name;
   }
   private static MethodHandle initHello(Lookup lookup) throws NoSuchMethodException, IllegalAccessException {
-    return lookup.findStatic(lookup.lookupClass(), "hello", MethodType.methodType(String.class, String.class));
+    return lookup.findStatic(lookup.lookupClass(), "hello", methodType(String.class, String.class));
   }
   @Test
   void hello() throws Throwable {
@@ -95,7 +94,7 @@ public class MjolnirTests {
     return value + 1;
   }
   private static MethodHandle init(Lookup lookup) throws NoSuchMethodException, IllegalAccessException {
-    return lookup.findStatic(lookup.lookupClass(), "incr", MethodType.methodType(int.class, int.class));
+    return lookup.findStatic(lookup.lookupClass(), "incr", methodType(int.class, int.class));
   }
   @Test
   void loop() throws Throwable {
