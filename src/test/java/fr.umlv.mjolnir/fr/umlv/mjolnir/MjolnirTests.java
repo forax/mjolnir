@@ -59,7 +59,7 @@ public class MjolnirTests {
   @Test
   void line() throws Throwable {
     int line = Mjolnir.get(MjolnirTests::boostrapLine);
-    assertEquals(62, line);  // this test may fail if you add more tests in front of this one !
+    assertEquals(61, line);  // this test may fail if you add more tests in front of this one !
   }
   
   private static String boostrapFile(Lookup lookup) {
