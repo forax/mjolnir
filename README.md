@@ -2,7 +2,7 @@
 Thor Hammer and a way to express invokedynamic in Java
 
 ## Mjolnir
-   Mjolnir is a Java class allows to create a stable value which is the result of the call to a bootstrap method. 
+   Mjolnir is a Java class allowing to initialize a stable value by calling a bootstrap method once. 
  
    The implementation is optimized so the stable value is very cheap to get.
    A bytecode rewriter is provided to replace the access to the stable value by an invokedynamic making it, even cheaper (mostly free).
