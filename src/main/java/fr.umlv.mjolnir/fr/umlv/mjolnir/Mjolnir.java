@@ -14,8 +14,14 @@ import java.lang.invoke.MethodHandles.Lookup;
 import java.lang.invoke.MethodType;
 import java.lang.invoke.MutableCallSite;
 import java.util.Objects;
+import java.util.ServiceLoader;
 
 public class Mjolnir {
+  static final AgentFacade AGENT_FACADE;
+  static {
+    AGENT_FACADE = ServiceLoader.load(AgentFacade.class).findFirst().orElse(null);
+  }
+ 
   private static final ClassValue<Object> CONSTS_GET = getConstantValue(0);
   private static final ClassValue<Object> CONSTS_OVERRIDE = getConstantValue(1);
       
@@ -40,7 +46,30 @@ public class Mjolnir {
             //System.out.println(frame.getDeclaringClass() + "." + frame.getMethodName() + " bci: " + frame.getByteCodeIndex());
             Class<?> declaringClass = frame.getDeclaringClass();
             
+            if (!Mjolnir.class.getModule().canRead(declaringClass.getModule())) {
+              boolean rescue = true;
+              if (AGENT_FACADE != null) {
+                try {
+                  AGENT_FACADE.addReads(Mjolnir.class.getModule(), declaringClass.getModule());
+                  AGENT_FACADE.addOpens(declaringClass.getModule(), declaringClass.getPackage().getName(), Mjolnir.class.getModule());
+                  rescue = false;
+                } catch(IllegalStateException e) {
+                  // do nothing
+                }
+                if (rescue) {
+                  Mjolnir.class.getModule().addReads(declaringClass.getModule());
+                }
+              }
+            }
             lookup = MethodHandles.privateLookupIn(declaringClass, PRIVATE_LOOKUP);
+            
+            if (AGENT_FACADE != null) {
+              try {
+                AGENT_FACADE.rewriteIfPossible(declaringClass);
+              } catch(IllegalStateException e) {
+                System.err.println(e);
+              }
+            }
           }
           return BOOTSTRAP_LOCAL.get().bootstrap(lookup);
         } catch (Exception e) {
@@ -119,7 +148,7 @@ public class Mjolnir {
     public CS(Lookup lookup, ClassValue<Object> constants, MethodType type) {
       super(type);
       this.constants = constants;
-      setTarget(INIT.bindTo(lookup));
+      setTarget(INIT.bindTo(this).bindTo(lookup));
     }
     
     @SuppressWarnings("unused")

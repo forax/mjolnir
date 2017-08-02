@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Collections;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
@@ -25,7 +26,8 @@ public class Rewriter {
   static final Handle BSM = new Handle(Opcodes.H_INVOKESTATIC, "fr/umlv/mjolnir/Mjolnir", "bsm",
       "(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;", false);
   
-  private static byte[] rewrite(InputStream input, AnnotationOracle annotationOracle) throws IOException {
+  public static byte[] rewrite(InputStream input, Function<String, Optional<InputStream>> classFileFinder) throws IOException {
+    AnnotationOracle annotationOracle = new AnnotationOracle(classFileFinder);
     ClassReader reader = new ClassReader(input);
     ClassWriter writer = new ClassWriter(reader, 0);
     reader.accept(new ClassVisitor(Opcodes.ASM6, writer) {
@@ -86,13 +88,13 @@ public class Rewriter {
     try(ZipFile input = new ZipFile(path.toFile());
         OutputStream fileOutput = Files.newOutputStream(outputPath);
         ZipOutputStream jarOutput = new ZipOutputStream(fileOutput)) {
-      AnnotationOracle annotationOracle = new AnnotationOracle(className -> findClassFile(input, className));
+      Function<String, Optional<InputStream>> classFileFinder = className -> findClassFile(input, className);
       for(ZipEntry entry: Collections.list(input.entries())) {
         ZipEntry newEntry = new ZipEntry(entry.getName());
         jarOutput.putNextEntry(newEntry);
         try(InputStream entryStream = input.getInputStream(entry)) {
           if (entry.getName().endsWith(".class")) {
-            jarOutput.write(rewrite(entryStream, annotationOracle));
+            jarOutput.write(rewrite(entryStream, classFileFinder));
           } else {
             entryStream.transferTo(jarOutput);
           }

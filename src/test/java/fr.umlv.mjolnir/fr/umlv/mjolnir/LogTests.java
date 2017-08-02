@@ -18,11 +18,11 @@ public class LogTests {
     }
     boolean[] printed = new boolean[] { false };
     Log.config(Test1.class).outputer(msg -> {
-      assertEquals("simple", msg);
+      assertEquals("simple", msg, "wrong message");
       printed[0] = true;
     }).commit();
     new Test1().m();
-    assertTrue(printed[0]);
+    assertTrue(printed[0], "not printed");
   }
   
   @Test

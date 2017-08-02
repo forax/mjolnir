@@ -1,0 +1,3 @@
+Can-Retransform-Classes: true
+Premain-Class: fr.umlv.mjolnir.agent.Agent
+Launcher-Agent-Class: fr.umlv.mjolnir.agent.Agent

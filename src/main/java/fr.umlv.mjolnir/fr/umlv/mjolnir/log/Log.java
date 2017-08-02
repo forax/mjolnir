@@ -21,9 +21,9 @@ public class Log {
     void commit();
   }
   
-  static class Info extends MutableCallSite {
-    boolean enable;
-    Consumer<? super String> outputer;
+  static final class Info extends MutableCallSite {
+    private boolean enable;
+    private Consumer<? super String> outputer;
     private final Object lock = new Object();
     
     private static final MethodHandle DO_LOG;
@@ -62,10 +62,10 @@ public class Log {
         setTarget(handle(enable, outputer));
       }
     }
-   
+    
     void populate(LogConfig config) {
       synchronized(lock) {
-        config.enable(enable).outputer(outputer);
+        config.enable(enable).outputer(outputer);  
       }
     }
   }
