@@ -20,7 +20,8 @@ set("compiler.lint", "all,-varargs,-overloads")
 
 set("packager.moduleMetadata", list(
     "fr.umlv.mjolnir@1.0/fr.umlv.mjolnir.bytecode.Rewriter",
-    "fr.umlv.mjolnir.agent@1.0/fr.umlv.mjolnir.agent.Main"
+    "fr.umlv.mjolnir.agent@1.0/fr.umlv.mjolnir.agent.Main",
+    "fr.umlv.mjolnir.amber@1.0/fr.umlv.mjolnir.amber.Main"
 ))
 set("packager.rawArguments", list(
     "--manifest=MANIFEST.MF"

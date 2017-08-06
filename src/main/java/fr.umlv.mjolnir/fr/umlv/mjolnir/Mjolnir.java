@@ -34,9 +34,10 @@ public class Mjolnir {
     return new ClassValue<>() {
       @Override
       protected Object computeValue(Class<?> type) {
+        /* de-activate to support ConstantDynamic call site (TODO re-evaluate)
         if (type.getDeclaredFields().length != 0) {
           throw new IllegalStateException("the bootstrap lambda should not capture any values");
-        }
+        }*/
         
         Lookup lookup = LOOKUP_LOCAL.get();
         try {
@@ -46,7 +47,7 @@ public class Mjolnir {
             //System.out.println(frame.getDeclaringClass() + "." + frame.getMethodName() + " bci: " + frame.getByteCodeIndex());
             Class<?> declaringClass = frame.getDeclaringClass();
             
-            if (!Mjolnir.class.getModule().canRead(declaringClass.getModule())) {
+            /*if (!Mjolnir.class.getModule().canRead(declaringClass.getModule())) {
               boolean rescue = true;
               if (AGENT_FACADE != null) {
                 try {
@@ -60,7 +61,8 @@ public class Mjolnir {
                   Mjolnir.class.getModule().addReads(declaringClass.getModule());
                 }
               }
-            }
+            }*/
+            Mjolnir.class.getModule().addReads(declaringClass.getModule());
             lookup = MethodHandles.privateLookupIn(declaringClass, PRIVATE_LOOKUP);
             
             if (AGENT_FACADE != null) {
