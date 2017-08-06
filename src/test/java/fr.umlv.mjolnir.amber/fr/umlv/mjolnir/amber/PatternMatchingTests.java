@@ -63,7 +63,7 @@ public class PatternMatchingTests {
       return "User " + name;
     }
     default:
-      throw new IllegalStateException("no match");
+      return "no match";
     }
   }
   
@@ -71,5 +71,7 @@ public class PatternMatchingTests {
   void test() throws Throwable {
     assertEquals("Point 99 747", match(new Point(99, 747)));
     assertEquals("User bob", match(new User("bob", 18)));
+    
+    assertEquals("no match", match(new Point(67, 67)));
   }
 }
