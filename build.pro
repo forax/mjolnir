@@ -28,7 +28,7 @@ packager.rawArguments(list(
     "--manifest=MANIFEST.MF"
 ))
 
-// this will rewrite the bytecode
+// the runner will rewrite the bytecode when called
 runner.module("fr.umlv.mjolnir")
 
 tester.timeout(99)
