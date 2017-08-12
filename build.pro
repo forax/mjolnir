@@ -27,10 +27,12 @@ set("packager.rawArguments", list(
     "--manifest=MANIFEST.MF"
 ))
 
+// this will rewrite the bytecode
 set("runner.module", "fr.umlv.mjolnir");
 
 set("tester.timeout", 99)
 
+// run the test once without bytecode modification and again after bytecode rewriting
 run("resolver", "modulefixer", "compiler", "packager", "tester", "runner", "tester")
 
 
