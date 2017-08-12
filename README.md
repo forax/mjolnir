@@ -22,6 +22,19 @@ Thor Hammer and secondarily a way to express invokedynamic in Java
  
    [![Me presenting Mjolnir at JVM Summit 2017](https://img.youtube.com/vi/Rco7hcOM7Ig/0.jpg)](https://www.youtube.com/embed/Rco7hcOM7Ig?list=PLX8CzqL3ArzXJ2EGftrmz4SzS6NRr6p2n "Me presenting Mjolnir at JVM Summit 2017")
  
+ ## How to build it
+ 
+   Mjolnir is built using [pro](https://github.com/forax/pro) which is my own build tool, you can download it from github (amazon S3) like this
+   ```
+   sh get_pro.sh
+   ```
+   (if you are not on linux, you have to build pro by yourself, sorry)
+   
+   and build Mjolnir just by running pro.
+   ```
+   pro/bin/pro
+   ```
+ 
  ## Examples
  
    The following example implements the equivalent of the macro__LINE__ i.e. it returns the current line number like in C
