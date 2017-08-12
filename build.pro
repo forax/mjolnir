@@ -8,7 +8,7 @@ set("resolver.remoteRepositories", list(
 ))
 set("resolver.dependencies", list(
     // ASM API
-    "org.objectweb.asm.all.debug=org.ow2.asm:asm:6.0_BETA",
+    "org.objectweb.asm.all.debug=org.ow2.asm:asm-debug-all:6.0_BETA",
     
     // JUnit 5 API
     "org.opentest4j=org.opentest4j:opentest4j:1.0.0-M2",
