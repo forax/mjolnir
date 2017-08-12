@@ -18,6 +18,17 @@ Thor Hammer and secondarily a way to express invokedynamic in Java
      - crawling the bytecode is enough
    - should work without the bytecode rewriter (for testing)
  
+ ## Video
+ 
+   Me presenting Mjolnir at JVM Summit 2017
+   
+   <iframe width="854"
+           height="480"
+           src="https://www.youtube.com/embed/Rco7hcOM7Ig?list=PLX8CzqL3ArzXJ2EGftrmz4SzS6NRr6p2n"
+           frameborder="0"
+           allowfullscreen>
+   </iframe>
+ 
  ## Examples
  
    The following example implements the equivalent of the macro__LINE__ i.e. it returns the current line number like in C
