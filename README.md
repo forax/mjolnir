@@ -20,14 +20,7 @@ Thor Hammer and secondarily a way to express invokedynamic in Java
  
  ## Video
  
-   Me presenting Mjolnir at JVM Summit 2017
-   
-   <iframe width="854"
-           height="480"
-           src="https://www.youtube.com/embed/Rco7hcOM7Ig?list=PLX8CzqL3ArzXJ2EGftrmz4SzS6NRr6p2n"
-           frameborder="0"
-           allowfullscreen>
-   </iframe>
+   [![Me presenting Mjolnir at JVM Summit 2017](https://img.youtube.com/vi/Rco7hcOM7Ig/0.jpg)](https://www.youtube.com/embed/Rco7hcOM7Ig?list=PLX8CzqL3ArzXJ2EGftrmz4SzS6NRr6p2n "Me presenting Mjolnir at JVM Summit 2017")
  
  ## Examples
  
