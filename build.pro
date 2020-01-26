@@ -14,8 +14,8 @@ resolver.
         "org.objectweb.asm.tree.analysis=org.ow2.asm:asm-analysis:7.3.1",
     
         // JUnit 5
-        "org.junit.jupiter.api=org.junit.jupiter:junit-jupiter-api:5.5.1",
-        "org.junit.platform.commons=org.junit.platform:junit-platform-commons:1.5.1",
+        "org.junit.jupiter.api=org.junit.jupiter:junit-jupiter-api:5.6.0",
+        "org.junit.platform.commons=org.junit.platform:junit-platform-commons:1.6.0",
         "org.apiguardian.api=org.apiguardian:apiguardian-api:1.1.0",
         "org.opentest4j=org.opentest4j:opentest4j:1.2.0"
     )
