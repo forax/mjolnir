@@ -5,8 +5,21 @@
 	<classpathentry excluding="module-info.java" kind="src" path="src/main/java/fr.umlv.mjolnir.agent"/>
 	<classpathentry excluding="module-info.java" kind="src" path="src/main/java/fr.umlv.mjolnir.amber"/>
 	<classpathentry excluding="module-info.java" kind="src" path="src/test/java/fr.umlv.mjolnir.amber"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-9"/>
-	<classpathentry kind="lib" path="deps/org.junit.jupiter.api.jar"/>
-	<classpathentry kind="lib" path="deps/org.objectweb.asm.all.debug.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-13">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="deps/org.objectweb.asm.jar"/>
+	<classpathentry kind="lib" path="deps/org.objectweb.asm.util.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
