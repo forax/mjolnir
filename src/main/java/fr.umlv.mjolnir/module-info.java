@@ -1,5 +1,5 @@
 module fr.umlv.mjolnir {
-  requires org.objectweb.asm.all.debug;
+  requires org.objectweb.asm;
   
   exports fr.umlv.mjolnir;
   exports fr.umlv.mjolnir.bytecode;

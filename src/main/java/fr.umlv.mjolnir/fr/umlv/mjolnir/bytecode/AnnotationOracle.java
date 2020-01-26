@@ -39,7 +39,7 @@ class AnnotationOracle {
     }
     try(InputStream input = classFileInputStream.get()) {
       ClassReader reader = new ClassReader(input);
-      reader.accept(new ClassVisitor(Opcodes.ASM6) {
+      reader.accept(new ClassVisitor(Opcodes.ASM7) {
         @Override
         public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
           return new MethodVisitor(Opcodes.ASM6) {

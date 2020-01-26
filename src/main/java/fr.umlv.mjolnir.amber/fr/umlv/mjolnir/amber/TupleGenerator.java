@@ -15,7 +15,7 @@ import static org.objectweb.asm.Opcodes.LLOAD;
 import static org.objectweb.asm.Opcodes.NEW;
 import static org.objectweb.asm.Opcodes.PUTFIELD;
 import static org.objectweb.asm.Opcodes.RETURN;
-import static org.objectweb.asm.Opcodes.V1_9;
+import static org.objectweb.asm.Opcodes.V9;
 
 import java.io.PrintWriter;
 import java.lang.invoke.MethodHandle;
@@ -79,7 +79,7 @@ class TupleGenerator {
   private static Class<?> generate(Form form, MethodType methodType) {
     String className = CLASS_PREFIX + form.objects + '_' + form.prims;
     ClassWriter writer = new ClassWriter(COMPUTE_MAXS);
-    writer.visit(V1_9, ACC_PUBLIC| ACC_SUPER, className, null, "java/lang/Object", null);
+    writer.visit(V9, ACC_PUBLIC| ACC_SUPER, className, null, "java/lang/Object", null);
     
     for(int i = 0; i < form.objects; i++) {
       FieldVisitor fv = writer.visitField(ACC_PUBLIC|ACC_FINAL, "objects$" + i, "Ljava/lang/Object;", null, null);

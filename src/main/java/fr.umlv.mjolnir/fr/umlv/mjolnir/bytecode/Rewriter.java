@@ -30,11 +30,11 @@ public class Rewriter {
     AnnotationOracle annotationOracle = new AnnotationOracle(classFileFinder);
     ClassReader reader = new ClassReader(input);
     ClassWriter writer = new ClassWriter(reader, 0);
-    reader.accept(new ClassVisitor(Opcodes.ASM6, writer) {
+    reader.accept(new ClassVisitor(Opcodes.ASM7, writer) {
       @Override
       public MethodVisitor visitMethod(int access, String methodName, String methodDesc, String signature, String[] exceptions) {
         MethodVisitor mv = super.visitMethod(access, methodName, methodDesc, signature, exceptions);
-        return new MethodVisitor(Opcodes.ASM6, mv) {
+        return new MethodVisitor(Opcodes.ASM7, mv) {
           @Override
           public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean itf) {
             // rewrite calls to Mjolnir.get()
