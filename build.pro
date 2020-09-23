@@ -7,15 +7,15 @@ pro.exitOnError(true)
 resolver.
     checkForUpdate(true).
     dependencies(
-        // ASM 7
-        "org.objectweb.asm=org.ow2.asm:asm:7.3.1",
-        "org.objectweb.asm.util=org.ow2.asm:asm-util:7.3.1",
-        "org.objectweb.asm.tree=org.ow2.asm:asm-tree:7.3.1",
-        "org.objectweb.asm.tree.analysis=org.ow2.asm:asm-analysis:7.3.1",
+        // ASM 9
+        "org.objectweb.asm=org.ow2.asm:asm:9.0",
+        "org.objectweb.asm.util=org.ow2.asm:asm-util:9.0",
+        "org.objectweb.asm.tree=org.ow2.asm:asm-tree:9.0",
+        "org.objectweb.asm.tree.analysis=org.ow2.asm:asm-analysis:9.0",
     
         // JUnit 5
-        "org.junit.jupiter.api=org.junit.jupiter:junit-jupiter-api:5.6.0",
-        "org.junit.platform.commons=org.junit.platform:junit-platform-commons:1.6.0",
+        "org.junit.jupiter.api=org.junit.jupiter:junit-jupiter-api:5.7.0",
+        "org.junit.platform.commons=org.junit.platform:junit-platform-commons:1.7.0",
         "org.apiguardian.api=org.apiguardian:apiguardian-api:1.1.0",
         "org.opentest4j=org.opentest4j:opentest4j:1.2.0"
     )
